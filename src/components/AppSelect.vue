@@ -1,6 +1,15 @@
 <template>
   <AppDropdown>
-    Your code here
+    <!-- Your code here -->
+    <slot name="selected"/>
+    <template #content="{ isOpen, setIsOpen }">
+      <ul>
+        <li v-for="(option, index) in options"
+          :key="index" @click="update(option, setIsOpen)">
+          <slot name="option" v-bind="{ option, isOpen, setIsOpen}"/>
+        </li>
+      </ul>
+    </template>
   </AppDropdown>
 </template>
 
